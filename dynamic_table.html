@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>BEYONDOC MODULE</title>
+<style>
+body{
+	background-color: #28415D;
+	color:  #5DC3F8;
+}
+table.tabella{
+	border: 1px solid #CCCCCC;
+}
+table.tabella th{
+	background-color : #969FFF;
+	font-size : 16px;
+	color : white;
+	padding-right: 100px;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+}
+table.tabella td{
+	background-color : whitesmoke;
+	color : back;
+	padding : 10px;
+}
+input[type=button], select{
+    width: 150px;
+    cursor: pointer;
+    background-color: #5DC3F8;
+    border-color: #5DC3F8;
+	border-radius: 50px;
+	padding: 10px;
+
+}
+input[type=date], select{
+    width: 150px;
+    cursor: pointer;
+    background-color: whitesmoke;
+    border-color: grey;
+	border-radius: 10px;
+	padding: 3px;
+	color: grey;
+
+}
+input[type=text], select{
+    width: 150px;
+    cursor: pointer;
+    background-color: whitesmoke;
+    border-color: grey;
+	border-radius: 10px;
+	padding: 3px;
+	color: grey;
+
+}
+</style>
+
+<script type='text/javascript'>
+// FABIO DONATANTONIO 2010 - http://www.donatantonio.it
+/*
+   - Preleviamo il riferimento alla tabella e al tbody
+   - Calcoliamo il numero di colonne presenti
+   - Cicliamo e per ogni cella nuova chiediamo da prompt il testo
+   - Nidifichiamo il testo nel td e il td nel tr
+   - Aggiungiamo la nuova riga tr nel tbody
+
+*/
+function aggiungiRiga(id_table){
+	var table = document.getElementById(id_table);
+	var tbody = table.getElementsByTagName('tbody')[0];
+	var colonne = table.getElementsByTagName('th').length;	
+	var tr = document.createElement('tr');
+	for(var i=0; i<colonne; i++){
+		var td = document.createElement('td');
+		var tx = document.createTextNode(prompt("Inserisci testo per cella "+(i+1),""));
+		td.appendChild(tx);
+		tr.appendChild(td);
+	}
+	tbody.appendChild(tr);
+}
+function stampa_id(ele_id) {
+  var nw = window.open();
+  nw.document.write(document.getElementById(ele_id).innerHTML);
+  nw.print();
+  nw.close();
+}
+
+</script>
+
+</head>
+
+<body>
+	<center>
+		
+		<div id="da_stampare">
+			<p id="immagine">
+				<input type="image" src="logo.PNG" width="250px" alt="">
+			</p>
+			<hr>
+			<br>
+			Matricola Designer <input type="text" value=""> <br>
+			<br>
+			Data di lavorazione <input type="date" name="data" id=""><br>
+			<br>
+			<table border='2' id='my_table' class='tabella' cellspacing='0' cellpadding='0'>
+			<thead><tr><th>MODULO</th><th>ESA</th><th>PJ</th><th>CLIENTE</th></tr></thead>
+			<tbody>
+			
+			</tbody>
+			</table><br/>
+		</div>
+
+			<input type='button' value='Aggiungi riga' onClick="aggiungiRiga('my_table')" />
+			<br>
+			<br>
+			<input type="image" src="icona_stampante.png" id="buttonstampa" onclick="window.print()" alt="" width="35px">
+
+		
+	</center>
+</body>
+
+</html>
